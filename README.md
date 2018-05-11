@@ -1,1 +1,3 @@
-"# minesweeper" 
+# minesweeper
+이것은 컴개실 과제 때문에 하는 CLI 지뢰찾기입니다.
+C(++)로 짜여져 있습니다.
