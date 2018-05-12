@@ -30,22 +30,9 @@ int check_game();
 
 int main(void)
 {
-	int x = 0;
-	int y = 0;
-	char isExploded = 0;
-	char isGameEnd = 0;
-	init_board();
-	while (true){
-		show_interface();
-		printf("input coordinates : ");
-		scanf("%d %d");
-		if ((isExploded = sweep(x, y))){
-		
-			
-		}
-		if ((isGameEnd = check_game())){
-			
-	}
+	printf("does it run?\n");
+	system("pause");
+	return 0;
 	// TODO
 }
 
@@ -64,7 +51,6 @@ void init_board()
 
 	// shuffling
 	for(i=0; i<SHUFFLE_NUM; i++)
-l
 	{
 		r1 = rand() % SQUARE_NUM;
 		r2 = rand() % SQUARE_NUM;

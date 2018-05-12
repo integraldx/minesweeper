@@ -1,0 +1,5 @@
+﻿  minesweeper.c
+c:\users\integral\source\repos\minesweeper\minesweeper.c(46): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\integral\source\repos\minesweeper\minesweeper.c(106): warning C4716: 'sweep': 값을 반환해야 합니다.
+c:\users\integral\source\repos\minesweeper\minesweeper.c(111): warning C4716: 'check_game': 값을 반환해야 합니다.
+  minesweeper.vcxproj -> c:\users\integral\source\repos\minesweeper\minesweeper\Debug\minesweeper.exe
