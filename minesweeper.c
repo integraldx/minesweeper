@@ -30,9 +30,21 @@ int check_game();
 
 int main(void)
 {
-	printf("does it run?\n");
-	system("pause");
-	return 0;
+	int x, y;
+	init_board();
+	while (true) {
+		show_interface();
+		printf("input coordinates : ");
+		scanf_s("%d %d", &x, &y);
+		if (sweep(y - 1, x - 1 )) {
+			printf("kaboom!");
+			return 0;
+		}
+		if (check_game()) {
+			printf("clear!");
+			return 0;
+		}
+	}
 	// TODO
 }
 
@@ -100,12 +112,52 @@ void show_interface()
 	printf("\n  |\n  v\n\n  Y\n\n");
 }
 
-int sweep(int x, int y)
+int sweep(int y, int x)
 {
 	// TODO
+	int i, j;
+	int count = 0;
+	if (mine_board[y][x] == 1) {
+		return 1;
+	}
+	for (i = -1; i < 2; i++) {
+		for (j = -1; j < 2; j++) {
+			if ((y - i > -1) && (x - j > -1) && (y - i < 11) && (x - j < 11) && (mine_board[y - i][x - j] == 1)) {
+				count++;
+			}
+		}
+	}
+	if (count == 0) {
+		display_board[y][x] = -1;
+		/*for (i = -1; i < 2; i++) {
+			for (j = -1; j < 2; j++) {
+				if ((y - i > -1) && (x - j > -1) && (y - i < 11) && (x - j < 11) && ((display_board[y -i][x - i] == 0))) {
+					sweep(y - i, x - j);
+				}
+			}
+		}*/
+	}
+	else {
+		display_board[y][x] = count;
+	}
+	return 0;
 }
 
 int check_game()
 {
 	// TODO
+	int i, j;
+	int count = 0;
+	printf("checking...\n");
+	for (i = 0; i < 11; i++) {
+		for (j = 0; j < 11; j++) {
+			if (display_board[i][j] == 0) {
+				count++;
+			}
+		}
+	}
+	if (count == MINE_NUM) {
+		return 0;
+	}
+	return 0;
 }
