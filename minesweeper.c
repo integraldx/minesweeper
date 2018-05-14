@@ -117,25 +117,30 @@ int sweep(int y, int x)
 	// TODO
 	int i, j;
 	int count = 0;
+	if (x < 0 || x > 9 || y < 0 || y > 9) {
+		return 0;
+	}
 	if (mine_board[y][x] == 1) {
 		return 1;
 	}
 	for (i = -1; i < 2; i++) {
 		for (j = -1; j < 2; j++) {
-			if ((y - i > -1) && (x - j > -1) && (y - i < 11) && (x - j < 11) && (mine_board[y - i][x - j] == 1)) {
+			if ((y - i > -1) && (x - j > -1) && (y - i < 10) && (x - j < 10) && (mine_board[y - i][x - j] == 1)) {
 				count++;
 			}
 		}
 	}
 	if (count == 0) {
 		display_board[y][x] = -1;
-		/*for (i = -1; i < 2; i++) {
+		for (i = -1; i < 2; i++) {
 			for (j = -1; j < 2; j++) {
-				if ((y - i > -1) && (x - j > -1) && (y - i < 11) && (x - j < 11) && ((display_board[y -i][x - i] == 0))) {
-					sweep(y - i, x - j);
+				if (!(display_board[y - i][x - j] == -1)) {
+					if (i != 0 || j != 0) {
+						sweep(y - i, x - j);
+					}
 				}
 			}
-		}*/
+		}
 	}
 	else {
 		display_board[y][x] = count;
@@ -149,15 +154,15 @@ int check_game()
 	int i, j;
 	int count = 0;
 	printf("checking...\n");
-	for (i = 0; i < 11; i++) {
-		for (j = 0; j < 11; j++) {
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 10; j++) {
 			if (display_board[i][j] == 0) {
 				count++;
 			}
 		}
 	}
 	if (count == MINE_NUM) {
-		return 0;
+		return 1;
 	}
 	return 0;
 }
